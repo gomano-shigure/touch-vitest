@@ -1,0 +1,24 @@
+{
+  "name": "touch-vitest",
+  "version": "1.0.0",
+  "description": "test-repository vitest",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:once": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gomano-shigure/touch-vitest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gomano-shigure/touch-vitest/issues"
+  },
+  "homepage": "https://github.com/gomano-shigure/touch-vitest#readme",
+  "dependencies": {
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}
