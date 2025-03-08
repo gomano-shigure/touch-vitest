@@ -1,18 +1,24 @@
 import { describe, expect, test, vi } from "vitest";
-import { caller } from "./caller";
-import { exportedFunction } from "./exportedFunction";
 
 // hoistedで事前にモック先の関数を作っておく
 const { exportedFunction: mockedFunction } = vi.hoisted(() => ({
   exportedFunction: vi.fn().mockImplementationOnce(() => "これはモックです。"),
 }));
 // モックで差し替え
-vi.mock("./exportedFunction", () => {
+import { caller } from "./test-target/caller";
+import { exportedFunction } from "./test-target/exportedFunction";
+
+// モックする対象についてはエラーログが流れないため、指定を間違えるとテストが壊れる。
+vi.mock("./test-target/exportedFunction", () => {
   return { exportedFunction: mockedFunction };
 });
 
 //最初のテスト
 describe("モックを使ってみる", () => {
+  test("モックできているかどうかを確認する", () => {
+    //モックできていることは確認したほうが良いかも。
+    expect(vi.isMockFunction(exportedFunction)).toBeTruthy();
+  });
   test("モックが返ってきたことを確認する", () => {
     expect(caller()).toBe("これはモックです。");
   });
